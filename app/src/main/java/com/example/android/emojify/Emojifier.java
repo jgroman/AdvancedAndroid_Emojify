@@ -28,7 +28,7 @@ import com.google.android.gms.vision.face.FaceDetector;
 
 class Emojifier {
 
-    private static final String LOG_TAG = Emojifier.class.getSimpleName();
+    private static final String TAG = Emojifier.class.getSimpleName();
 
     /**
      * Method for detecting faces in a bitmap.
@@ -51,18 +51,28 @@ class Emojifier {
         SparseArray<Face> faces = detector.detect(frame);
 
         // Log the number of faces
-        Log.d(LOG_TAG, "detectFaces: number of faces = " + faces.size());
+        Log.d(TAG, "detectFaces: number of faces = " + faces.size());
 
         // If there are no faces detected, show a Toast message
         if(faces.size() == 0){
             Toast.makeText(context, R.string.no_faces_message, Toast.LENGTH_SHORT).show();
         }
 
-        // TODO (2): Iterate through the faces, calling getClassifications() for each face.
+        // COMPLETED (2): Iterate through the faces, calling getClassifications() for each face.
+        for (int i=0; i<faces.size();i++) {
+            getClassifications(faces.get(i));
+        }
+
 
         // Release the detector
         detector.release();
     }
 
-    // TODO (1): Create a static method called getClassifications() which logs the probability of each eye being open and that the person is smiling.
+    // COMPLETED (1): Create a static method called getClassifications() which logs the probability of each eye being open and that the person is smiling.
+    private static void getClassifications(Face face) {
+
+        Log.d(TAG, "getClassifications: Left Eye = " + face.getIsLeftEyeOpenProbability());
+        Log.d(TAG, "getClassifications: Right Eye = " + face.getIsRightEyeOpenProbability());
+        Log.d(TAG, "getClassifications: Smile = " + face.getIsSmilingProbability());
+    }
 }
