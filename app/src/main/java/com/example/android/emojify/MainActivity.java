@@ -69,12 +69,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Bind the views
-        mImageView = (ImageView) findViewById(R.id.image_view);
-        mEmojifyButton = (Button) findViewById(R.id.emojify_button);
-        mShareFab = (FloatingActionButton) findViewById(R.id.share_button);
-        mSaveFab = (FloatingActionButton) findViewById(R.id.save_button);
-        mClearFab = (FloatingActionButton) findViewById(R.id.clear_button);
-        mTitleTextView = (TextView) findViewById(R.id.title_text_view);
+        mImageView = findViewById(R.id.image_view);
+        mEmojifyButton = findViewById(R.id.emojify_button);
+        mShareFab = findViewById(R.id.share_button);
+        mSaveFab = findViewById(R.id.save_button);
+        mClearFab = findViewById(R.id.clear_button);
+        mTitleTextView = findViewById(R.id.title_text_view);
     }
 
     /**
@@ -185,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
         mResultsBitmap = BitmapUtils.resamplePic(this, mTempPhotoPath);
 
         // TODO (3): Call the new detectFaces() method, passing in the resampled bitmap to detect the faces in the picture.
+        Emojifier.detectFaces(this, mResultsBitmap);
 
         // Set the new bitmap to the ImageView
         mImageView.setImageBitmap(mResultsBitmap);
